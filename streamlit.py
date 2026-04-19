@@ -3,6 +3,13 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 from monitor import VoltageMonitor
+import subprocess
+import os
+
+# Entraîne si modèle absent
+if not os.path.exists("models/xgboost_model.pkl"):
+    with st.spinner("Premier entraînement en cours..."):
+        subprocess.run(["python", "train.py"])
 
 st.set_page_config(page_title="Surveillance Tension 400V", page_icon="⚡", layout="wide")
 
